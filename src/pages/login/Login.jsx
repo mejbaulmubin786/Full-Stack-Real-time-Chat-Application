@@ -6,6 +6,7 @@ const Login = () => {
   return (
     <div className='login'>
         <img src={assets.logo_big} alt="" className="logo" />
+        <from className="login-form"></from>
     </div>
   )
 }
