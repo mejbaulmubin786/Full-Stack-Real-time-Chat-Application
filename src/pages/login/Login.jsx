@@ -1,23 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Login.css'
 import assets from '../../assets/assets'
 
 const Login = () => {
+
+  const [currState, setCurrState] = useState("Sign up");
+   
   return (
     <div className='login'>
         <img src={assets.logo_big} alt="" className="logo" />
         <from className="login-form">
-          <h2>Sign Up</h2>
-          <input type="text" placeholder="user name" className="form-input" required/>
-          <input type="email" placeholder="E-mail"  className="form-input" />
-          <input type="password" placeholder="Password"  className="form-input" />
-          <button type='submit'>Sign Up</button>
+          <h2>{currState}</h2>
+          {currState === 'Sign up'?<input type="text" placeholder="username" className="form-input" required/>:null}
+          <input type="email" placeholder="E-mail"  className="form-input" required/>
+          <input type="password" placeholder="Password"  className="form-input" required/>
+          <button type='submit'>{currState === "Sign up"?"Create account":"Login now"}</button>
           <div className="login-term">
             <input type="checkbox" className="checkbox" />
             <p>Agree to the terms of use & privacy policy.</p>
           </div>
           <div className="login-forget">
-            <p className="login-toggle">Already have an accoutn <span>click here</span></p>
+            {
+              currState === "Sign up"
+              ? 
+              <p className="login-toggle">Already have an accoutn <span onClick={()=>setCurrState('Login')}>Login here</span></p>
+              :
+              <p className="login-toggle">Create an accoutn <span onClick={()=>setCurrState('Sign up')}>click here</span></p>
+            }
+            
+            
           </div>
         </from>
     </div>
