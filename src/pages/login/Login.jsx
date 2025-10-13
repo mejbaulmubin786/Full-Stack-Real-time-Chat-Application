@@ -9,7 +9,8 @@ const Login = () => {
   return (
     <div className='login'>
         <img src={assets.logo_big} alt="" className="logo" />
-        <from className="login-form">
+        <div className="glow">
+        <form className="login-form">
           <h2>{currState}</h2>
           {currState === 'Sign up'?<input type="text" placeholder="username" className="form-input" required/>:null}
           <input type="email" placeholder="E-mail"  className="form-input" required/>
@@ -30,7 +31,8 @@ const Login = () => {
             
             
           </div>
-        </from>
+        </form>
+        </div>
     </div>
   )
 }

@@ -1,37 +1,91 @@
 .login {
+    position: relative;
     min-height: 100vh;
-    background: url(/background.png) no-repeat;
-    background-size: cover;
+    background: url(/background.png) no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    z-index: 0;
 }
 
-.login .logo{
+/* ---------------- Logo ---------------- */
+.login .logo {
     width: max(20vw, 200px);
 }
 
-.login-form{
- background: white;
- padding: 20px 30px;
- display: flex;
- flex-direction: column;
- gap: 20px;
- border-radius: 10px;
+/* ---------------- Form Box ---------------- */
+.login-form {
+    background: white;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
 }
 
-.login-form h2{
+/*================================= Animation =================================*/
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.glow {
+    position: relative;
+}
+
+/* glow pseudo-elements */
+.glow::before,
+.glow::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 15px);
+    /* ⬅ glow যেন ফর্মের বাইরে ছড়ায় */
+    height: calc(100% + 15px);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border-radius: 14px;
+    background-image: conic-gradient(from var(--angle),
+            red, transparent 30%);
+    animation: spin 6s linear infinite;
+    z-index: -1;
+}
+
+.glow::after {
+    filter: blur(1.3rem);
+    opacity: 0.5;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+
+    to {
+        --angle: 360deg;
+    }
+}
+
+/*================================= End =================================*/
+
+.login-form h2 {
     font-weight: 500;
+    position: relative;
+    z-index: 2;
+    /* কনটেন্ট glow এর উপরে */
 }
 
-.form-input{
+.form-input {
     padding: 8px 10px;
     border: 1px solid;
     border-radius: 4px;
     outline-color: #077eff;
+    position: relative;
+    z-index: 2;
 }
 
-.login-form button{
+.login-form button {
     padding: 10px;
     background-color: #077eff;
     color: white;
@@ -39,26 +93,36 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
+    position: relative;
+    z-index: 2;
 }
-.login-term{
+
+.login-term,
+.login-forget,
+.login-toggle {
+    position: relative;
+    z-index: 2;
+}
+
+.login-term {
     display: flex;
     gap: 5px;
     font-size: 12px;
     color: #808080;
 }
 
-.login-forget{
+.login-forget {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.login-toggle{
+.login-toggle {
     font-size: 13px;
     color: #5c5c5c;
 }
 
-.login-toggle span{
+.login-toggle span {
     font-weight: 500;
     color: #077eff;
     cursor: pointer;
