@@ -23,6 +23,14 @@ const ChatBox = () => {
           </div>
         </div>
 
+        <div className="s-msg">
+          <img className='msg-img' src={assets.pic1} alt="" />
+          <div>
+              <img src={assets.profile_img} alt="" />
+              <p>2:30 pm</p>
+          </div>
+        </div>
+
         <div className="r-msg">
           <p className="msg">Sapiente, repellat, deserunt modi nulla placeat. Suscipit quo impedit accusamus nihil!</p>
           <div>
