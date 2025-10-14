@@ -47,7 +47,7 @@
     translate: -50% -50%;
     border-radius: 14px;
     background-image: conic-gradient(from var(--angle),
-            red, transparent 30%);
+            transparent 70%, red);
     animation: spin 6s linear infinite;
     z-index: -1;
 }
