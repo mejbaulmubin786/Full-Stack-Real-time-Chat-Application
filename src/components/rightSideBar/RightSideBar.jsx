@@ -1,8 +1,23 @@
-import React from 'react'
-import './RightSideBar.css'
-import assets from '../../assets/assets'
+import React from 'react';
+import './RightSideBar.css';
+import assets from '../../assets/assets';
+import { logout } from '../../config/firebase';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const RightSideBar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      toast.info("Logged out successfully!");
+      navigate('/'); // Login পেজে রিডিরেক্ট করবে
+    } catch (error) {
+      toast.error("Logout failed: " + error.message);
+    }
+  };
+
   return (
     <div className='rs'>
       <div className="rs-profile">
@@ -22,9 +37,9 @@ const RightSideBar = () => {
           <img src={assets.pic2} alt="" />
         </div>
       </div>
-      <button>Logout</button>
+      <button onClick={handleLogout}>Logout</button>
     </div>
-  )
-}
+  );
+};
 
-export default RightSideBar
+export default RightSideBar;
